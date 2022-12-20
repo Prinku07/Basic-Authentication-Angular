@@ -13,14 +13,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { AuthService } from './service/auth.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './guard/auth.guard';
+import { ReverseGuard } from './guard/reverse.guard';
+import { Interceptor } from './service/interceptor.service';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+import { NumberDirective } from './directive/numbers-only.directive';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-
+    NumberDirective
   ],
   imports: [
     BrowserModule,
@@ -31,9 +38,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+   AuthService,
+    AuthGuard,
+    ReverseGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

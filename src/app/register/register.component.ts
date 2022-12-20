@@ -16,12 +16,10 @@ export class RegisterComponent implements OnInit {
     this.registerform = this.fb.group({
       userName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      mobileNumber: ['', Validators.required],
+      mobileNumber: ['', [Validators.required, Validators.pattern('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')]], // Validators.minLength(10), Validators.maxLength(10)
       age: ['', Validators.required]
     })
-
   }
-
 
   submit() {
     let controls = this.registerform.controls
@@ -29,9 +27,11 @@ export class RegisterComponent implements OnInit {
       return controls.markallAsToched;
     }
     let params = {
-      "full_name": controls.userName.value,
-      "user_name": controls.userFullName.value,
+      "username": controls.userName.value,
+      "mobileNo": controls.userFullName.value,
       "email": controls.email.value,
+      "age": controls.age.value,
+
     };
     //   this.authservice.register(params).subscribe((res: any) => {
     //     if (res.status == 200) {

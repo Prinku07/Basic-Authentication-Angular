@@ -1,46 +1,51 @@
 <div class="container">
-        <div class="col-lg-6 col-xs offset-lg-3" style="padding-top: 5%">
-            <form [formGroup]="registerform"  (ngSubmit)="submit()">
-                <h1>Register</h1>
-                <div class="d-flex flex-column mb-4">
-                    <mat-form-field class="" appearance="outline">
-                        <mat-label>User Name</mat-label>
-                        <input matInput placeholder="John_alex" formControlName="userName">
-                        <mat-error *ngIf="registerform.get('userName')?.hasError('required')">
-                            Please enter Username
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field class=" " appearance="outline">
-                        <mat-label>Enter your Email</mat-label>
-                        <input type="email" matInput formControlName="email" placeholder="@akshata@nimapinfotech.com">
-                        <mat-error *ngIf="registerform.get('email')?.hasError('required')">Please enter Email Adderess
-                        </mat-error>
-                        <mat-error *ngIf="registerform.get('email')?.hasError('email')">Please enter Valid Email
-                            Adderess
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="" appearance="outline">
-                        <mat-label>User Name</mat-label>
-                        <input matInput placeholder="John_alex" formControlName="mobileNumber">
-                        <mat-error *ngIf="registerform.get('mobileNumber')?.hasError('required')">
-                            Please enter Username
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="" appearance="outline">
-                        <mat-label>User Name</mat-label>
-                        <input matInput placeholder="John_alex" formControlName="age">
-                        <mat-error *ngIf="registerform.get('age')?.hasError('required')">
-                            Please enter Username
-                        </mat-error>
-                    </mat-form-field>
-                    <button mat-raised-button color="primary"
-                    class="button-continue" >
-                  Register
+    <div class="col-lg-6 col-xs offset-lg-3" style="padding-top: 5%">
+        <form [formGroup]="registerform" (ngSubmit)="submit()">
+            <h1>Register</h1>
+            <div class="d-flex flex-column mb-4">
+                <mat-form-field class="" appearance="outline">
+                    <mat-label>Enter Your Name</mat-label>
+                    <input matInput placeholder="John_alex" formControlName="userName">
+                    <mat-error *ngIf="registerform.get('userName')?.hasError('required')">
+                        Please enter Your Name
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class=" " appearance="outline">
+                    <mat-label>Enter your Email</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="@akshata@nimapinfotech.com">
+                    <mat-error *ngIf="registerform.get('email')?.hasError('required')">Please enter Email Adderess
+                    </mat-error>
+                    <mat-error *ngIf="registerform.get('email')?.hasError('email')">Please enter Valid Email
+                        Adderess
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="" appearance="outline">
+                    <mat-label>Mobile Number</mat-label>
+                    <input matInput placeholder="2334123399" formControlName="mobileNumber">
+                    <mat-error *ngIf="registerform.get('mobileNumber')?.hasError('required')">
+                        Please enter Mobile Number
+                    </mat-error>
+                    <mat-error *ngIf="registerform.get('mobileNumber')?.hasError('pattern') ">
+                      Invalid Mobile Number
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="" appearance="outline">
+                    <mat-label>Age</mat-label>
+                    <input type="number" matInput placeholder="20" formControlName="age" min="1" max="8">
+                    <mat-error *ngIf="registerform.get('age')?.hasError('required')">
+                        Please Enter Your Age
+                    </mat-error>
+                    <mat-error *ngIf="!registerform.get('age')?.hasError('required')">
+                        Please select age between 1 to 8
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary" class="my-3">
+                    Register
                 </button>
                 <div class="text-center mb-3">
                     <a routerLink="/login"> Have an account? Login</a>
                 </div>
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
+</div>
