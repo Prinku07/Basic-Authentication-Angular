@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1" style="padding-top: 10%;">
+        <form [formGroup]="loginform" (ngSubmit)="submit()">
+            <h1>Login</h1>
+            <p class="text-muted">Enter your email or username to login</p>
+            <div class="d-flex flex-column mb-4">
+                <mat-form-field class=" mb-3" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="@akshata@nimapinfotech.com">
+                    <mat-error *ngIf="loginform.get('email')?.hasError('required')">Please enter Email Address
+                    </mat-error>
+                    <mat-error *ngIf="loginform.get('email')?.hasError('email')">Please enter Valid Email Adderess
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class=" mb-3" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="email" matInput formControlName="password" placeholder="SuperAdmin@123">
+                    <mat-error *ngIf="loginform.get('password')?.hasError('required')">Please enter password</mat-error>
+                    <mat-error *ngIf="loginform.get('password').errors?.minlength">Minimum Characters
+                        required</mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary">
+                    Login
+                </button>
+            </div>
+            <div class="text-center mt-3">
+                <a routerLink="/register"> Don't Have an account yet? Register</a>
+            </div>
+        </form>
+    </div>
+</div>
