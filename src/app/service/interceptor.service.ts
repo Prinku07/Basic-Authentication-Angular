@@ -31,17 +31,15 @@ export class Interceptor {
     }
     return next.handle(req).pipe(tap(event => {
       if (event instanceof HttpResponse) {
-        if (event.body.status) {
-          if (event.body.status == 401) {
+          if (event.status === 401) {
             this.authservice.logout();
             this.router.navigate(['/login'])
           }
-          if (event.body.status !== 200) {
+          if (event.status !== 200) {
             console.log(event.body.message)
             this.toastrService.error(event.body.message)
           }
         }
-      }
     }))
   }
 }

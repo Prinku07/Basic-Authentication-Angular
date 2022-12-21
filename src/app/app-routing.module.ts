@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guard/auth.guard';
 import { ReverseGuard } from './guard/reverse.guard';
 
-const routes: Routes = [
+const routes: Routes = [ 
   {
-    path : 'login',
-    component : LoginComponent,
-    canActivate : [ReverseGuard]
+    path: '',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    canActivate : [ReverseGuard]  
   },
   {
-    path : 'register',
-    component : RegisterComponent,
-    canActivate : [ReverseGuard]
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
   },
-  {
-    path : 'dashboard',
-    component : DashboardComponent,
-    canActivate : [AuthGuard]
-  }
+  // {
+  //   path: 'master',
+  //   loadChildren: () => import('./views/master/master.module').then(m => m.MasterModule),
+  // },
 ];
 
 @NgModule({

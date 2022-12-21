@@ -1,1 +1,61 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container  class="example-container">
+    <mat-sidenav mode="side" opened  *ngIf="authservice.isLoggedIn()">  
+      <mat-nav-list>
+      <mat-list-item>
+        <mat-icon>crop_square</mat-icon>
+        <a mat-list-item routerLink='dashboard'>DashBoard</a>
+      </mat-list-item>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon style="margin-right: 12px">crop_square</mat-icon>
+          Master
+        </mat-expansion-panel-header>
+        <a mat-list-item routerLink="master/host">Host</a>
+        <a mat-list-item routerLink="master/players">Player</a>
+      </mat-expansion-panel>
+      <mat-list-item>
+        <mat-icon>crop_square</mat-icon>
+        <a mat-list-item routerLink='games'>All Games</a>
+      </mat-list-item>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon style="margin-right: 12px">crop_square</mat-icon>
+          Puzzel
+        </mat-expansion-panel-header>
+        <a mat-list-item routerLink='puzzle/puzzle-category'>Sub-category</a>
+        <a mat-list-item routerLink='puzzle/puzzel-bank'>Puzzle Bank</a>
+        <a mat-list-item routerLink='puzzle/played-puzzle'>played Puzzle</a>
+        <a mat-list-item routerLink='puzzle/archive-puzzle'>Archive</a>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon style="margin-right: 12px">crop_square</mat-icon>
+          Quiz
+        </mat-expansion-panel-header>
+        <a mat-list-item routerLink='quiz/quiz-category'>Sub-category</a>
+        <a mat-list-item routerLink='quiz/quiz-bank'>Quiz Bank</a>
+        <a mat-list-item routerLink='quiz/played-quiz'>played quiz</a>
+        <a mat-list-item routerLink='quiz/archive-quiz'>Archive</a>
+      </mat-expansion-panel>
+      <mat-list-item>
+        <mat-icon>crop_square</mat-icon>
+        <a mat-list-item routerLink='subscription'>Subscription</a>
+      </mat-list-item>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-icon style="margin-right: 12px">crop_square</mat-icon>
+          Setting
+        </mat-expansion-panel-header>
+        <a mat-list-item routerLink='setting/users'>Users</a>
+        <a mat-list-item routerLink='setting/roles'>Roles & Permission</a>
+      </mat-expansion-panel>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+     <!-- <app-header *ngIf="authservice.isLoggedIn()" [ComponentName]="ComponentName"></app-header>
+        <div [ngClass]="{'main' : authservice.isLoggedIn()}"> -->
+          <router-outlet (activate)="setHeader()">
+          </router-outlet>
+        <!-- </div> -->
+      </mat-sidenav-content>
+    </mat-sidenav-container>

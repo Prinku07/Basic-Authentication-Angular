@@ -5,10 +5,10 @@
             <div class="d-flex flex-column mb-4">
                 <mat-form-field class=" mb-3" appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input type="email" matInput formControlName="email" placeholder="@akshata@nimapinfotech.com">
-                    <mat-error *ngIf="loginform.get('email')?.hasError('required')">Please Enter Email Address
+                    <input type="email" matInput formControlName="emailId" placeholder="@akshata@nimapinfotech.com">
+                    <mat-error *ngIf="loginform.get('emailId')?.hasError('required')">Please Enter Email Address
                     </mat-error>
-                    <mat-error *ngIf="loginform.get('email')?.hasError('email')">Please Enter Valid Email Adderess
+                    <mat-error *ngIf="loginform.get('emailId')?.hasError('email')">Please Enter Valid Email Adderess
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class=" mb-3" appearance="outline">

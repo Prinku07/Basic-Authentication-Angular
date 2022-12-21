@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="col-lg-6 col-xs offset-lg-3" style="padding-top: 5%">
+    <div class="col-lg-6 col-xs offset-lg-3" style="padding-top:5%">
         <form [formGroup]="registerform" (ngSubmit)="submit()">
             <h1>Register</h1>
             <div class="d-flex flex-column mb-4">
@@ -37,6 +37,16 @@
                     </mat-error>
                     <mat-error *ngIf="!registerform.get('age')?.hasError('required')">
                         Please select age between 1 to 8
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="" appearance="outline">
+                    <mat-label>Create Password</mat-label>
+                    <input type="text" matInput placeholder="Enter Password" formControlName="password">
+                    <mat-error *ngIf="registerform.get('password')?.hasError('required')">
+                        Please Enter Your password
+                    </mat-error>
+                    <mat-error *ngIf="registerform.get('password')?.hasError('minlength')">
+                    password must be more then 8 Characters
                     </mat-error>
                 </mat-form-field>
                 <button mat-raised-button color="primary" class="my-3">

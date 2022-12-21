@@ -9,21 +9,31 @@ export class AuthService {
 
   constructor(private http : HttpClient, private router : Router) { }
 
+ currentuser = localStorage.getItem('user');
+
   logout() {
     localStorage.removeItem('user');
      localStorage.removeItem("token");
      this.router.navigate(['/login'])
    }
 
+   isLoggedIn() {
+    return !!localStorage.getItem('user');
+  }
+
   getToken() {
     return localStorage.getItem('token')
   }
 
   login(email: string, password: string) {
-    return this.http.post('/api/login', { email, password });
+    return this.http.post('/api/Account/Login?emailId='+ email + '&password=' + password, { });
   }
 
   register(params: any) {
-    return this.http.post('/api/register', params)
+    return this.http.post('/api/Account/Register', params)
+  }
+
+  getUserDetails(){
+    return this.http.get('/api/User/'+ this.currentuser)
   }
 }
