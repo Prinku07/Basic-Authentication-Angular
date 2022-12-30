@@ -32,8 +32,4 @@ export class AuthService {
   register(params: any) {
     return this.http.post('/api/Account/Register', params)
   }
-
-  getUserDetails(){
-    return this.http.get('/api/User/'+ this.currentuser)
-  }
 }

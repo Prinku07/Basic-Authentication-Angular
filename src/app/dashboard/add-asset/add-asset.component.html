@@ -1,0 +1,100 @@
+<h2 mat-dialog-title>Add Asset Details</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="assetDetailsForm" >
+    <div class="grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Asset Type</mat-label>
+        <input matInput [matAutocomplete]="auto" formControlName="assetType">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+          <span>{{state.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Select Model</mat-label>
+      <input matInput [matAutocomplete]="auto" formControlName="model">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.id">
+          <span>{{state.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field> <mat-form-field appearance="outline">
+      <mat-label>Select processor</mat-label>
+      <input matInput [matAutocomplete]="auto" formControlName="processor">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.id">
+          <span>{{state.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field> <mat-form-field appearance="outline">
+      <mat-label>Select Ram</mat-label>
+      <input matInput [matAutocomplete]="auto" formControlName="ram">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.id">
+          <span>{{state.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field> <mat-form-field appearance="outline">
+      <mat-label>Asset Type</mat-label>
+      <input matInput [matAutocomplete]="auto" formControlName="HDD">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state.id">
+          <span>{{state.name}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter Serial No</mat-label>
+      <input matInput placeholder="Serial No" formControlName="serialNo">
+      <mat-error>Required Field</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter Asset No</mat-label>
+      <input matInput placeholder="Asset No" formControlName="AssetNo">
+      <mat-error>Required Field</mat-error>
+    </mat-form-field>
+    <mat-form-field class="" appearance="outline">
+      <mat-label>Date of Purchase</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Remarks</mat-label>
+      <input matInput placeholder="Remarks" formControlName="remarks">
+      <mat-error>Required Field</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Accessory</mat-label>
+      <input matInput placeholder="Accessory" formControlName="accessory">
+      <mat-error>Required Field</mat-error>
+    </mat-form-field>
+  </div>
+   <div class="d-flex justify-content-evenly align-items-center" style="height: 100px;">
+     <mat-radio-group formControlName="bag">
+       <mat-label>Bag* :</mat-label>&nbsp;
+       <mat-radio-button value="yes" >Yes</mat-radio-button>
+       <mat-radio-button value="no">No</mat-radio-button>
+       <mat-error *ngIf="assetDetailsForm.get('bag')?.hasError('required') && submitted " >field is required</mat-error>
+     </mat-radio-group>  
+      <mat-radio-group formControlName="wirelessMouse">
+        <mat-label >Wireless Mouse* :</mat-label>&nbsp;
+        <mat-radio-button value="yes">Yes</mat-radio-button>
+        <mat-radio-button value="no">No</mat-radio-button> 
+        <mat-error *ngIf="assetDetailsForm.get('wirelessMouse')?.hasError('required') && submitted" >field is required</mat-error>
+      </mat-radio-group>
+   
+      <mat-radio-group formControlName="laptopStand">
+        <mat-label >Laptop Stand* :</mat-label>&nbsp;
+        <mat-radio-button value="yes">Yes</mat-radio-button>
+        <mat-radio-button value="no">No</mat-radio-button>
+        <mat-error *ngIf="assetDetailsForm.get('laptopStand')?.hasError('required') && submitted">field is required</mat-error>
+      </mat-radio-group>
+    </div>
+  </form>
+</mat-dialog-content>
+  <mat-dialog-actions class="d-flex justify-content-end">
+    <button mat-raised-button mat-dialog-close> Cancel</button>
+    <button mat-raised-button color="primary" class="mx-4" (click)="submit()" cdkFocusInitial>Add Asset</button>
+  </mat-dialog-actions>

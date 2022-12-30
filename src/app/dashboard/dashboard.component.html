@@ -1,13 +1,64 @@
- <div class="container-fluid">
-  <mat-toolbar color="" class="d-flex justify-content-between">
-    <span>My App</span>
-    <span>
-        <button mat-raised-button color="primary" (click)="logout()">Logout</button>
-    </span>
-  </mat-toolbar>
+<div class="container-fluid ">
+  <span class="d-flex justify-content-between my-3">
+    <h2>User Setting</h2>
+    <button mat-raised-button color="primary" (click)="adduser('Add')">Add User</button>
+  </span>
  
-  <h2>Hello {{userDetails}}</h2>
-  <h2> Your Email Addeess is {{userDetails}}</h2>
-  <h2>Mobile {{userDetails}}</h2> 
-  <h2>Age {{userDetails}}</h2>
+    <div class="example-table-container">
+      <mat-table [dataSource]="dataSource" class="mat-mdc-table mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+      
+      <!-- Name Column -->
+      <ng-container matColumnDef="AssignedUser">
+        <mat-header-cell *matHeaderCellDef> Assigned-User </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+      
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Userlogin">
+        <mat-header-cell *matHeaderCellDef> User-login </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.emailId}} </mat-cell>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Department">
+        <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="EmpCode">
+        <mat-header-cell *matHeaderCellDef> Emp Code </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.empCode}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Location">
+        <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.location}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="ReportingPerson">
+        <mat-header-cell *matHeaderCellDef> Reporting Person </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.reportingPerson}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-icon color="primary" (click)="adduser('Edit', element)">edit</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-icon color="primary" (click)="addAsset()">visibility</mat-icon>
+          <mat-icon  color="warn" (click)="deleteUser(element.id)" >delete</mat-icon>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row  matRipple *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    
+    <div *ngIf="isLoadingResults" class="example-loading-shade">
+      <mat-spinner [diameter]="50" ></mat-spinner>
+    </div>
+  </div>
 </div>

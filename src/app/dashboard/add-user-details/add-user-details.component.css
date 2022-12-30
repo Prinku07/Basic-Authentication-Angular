@@ -1,0 +1,10 @@
+.grid{
+    display: grid;
+    grid-template-columns: 45% 45%;
+    gap: 2%;
+    justify-content: center;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
